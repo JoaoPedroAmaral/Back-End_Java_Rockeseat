@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
 /*
   MODIFICADORES:
   * public
@@ -37,13 +39,17 @@ public class UserController {
 
     @PostMapping("/")
     public ResponseEntity create(@RequestBody UserModel userModel){
-      //cria um erro customizado do spring para o erro de repetição do username
+      //cria um erro customizado do IUser para o erro de repetição do username
       var user = this.userRepository.findByUsername(userModel.getUsername());
 
       if(user != null){
         //mensagem de erro para usuario existente
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario já existente!!");
       }
+
+      var passwordHashed= BCrypt.withDefaults().hashToString(12, userModel.getPassword().toCharArray());//criptografar o password com o Bcrypt
+
+      userModel.setPassword(passwordHashed);//setar o password criptado no banco de dados
 
        var userCreated = this.userRepository.save(userModel);
        return ResponseEntity.status(HttpStatus.CREATED).body(userCreated);

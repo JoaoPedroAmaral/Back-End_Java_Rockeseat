@@ -24,6 +24,7 @@ public class UserModel {
     @Column(unique = true) // define que o valor de username deve ser unico, não repetido
     private String username;
     private String name;
+    
     private String password;
 
     @CreationTimestamp //quando o dado for gerado ele vai mostrar a hora que foir criado

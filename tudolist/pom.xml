@@ -68,6 +68,14 @@
 			spring.h2.console.enabled=true
 		porem tem como linkar outros banco de dados até mais recomendado como o mysql ou postegree
 	-->
+	<dependency>
+		<groupId>at.favre.lib</groupId>
+		<artifactId>bcrypt</artifactId>
+		<version>0.10.2</version>
+	</dependency>
+	<!--
+		Dependencia para criptografar a senha (fazendo um rest)
+	-->
 
 	</dependencies>
 
