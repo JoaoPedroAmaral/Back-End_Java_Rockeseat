@@ -77,6 +77,12 @@
 		Dependencia para criptografar a senha (fazendo um rest)
 	-->
 
+	<!-- ela faz um restart automatico sem precisar dá um build toda hora-->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-devtools</artifactId>
+		<optional>true</optional>
+	</dependency>
 	</dependencies>
 
 	<build>
