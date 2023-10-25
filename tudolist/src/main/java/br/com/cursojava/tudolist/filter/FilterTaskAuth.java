@@ -53,7 +53,7 @@ public class FilterTaskAuth extends OncePerRequestFilter {
             //validar senha 
             var passwordVerify = BCrypt.verifyer().verify(password.toCharArray(), user.getPassword());
             if(passwordVerify.verified/*retorna booleano se for true é verdadeiro logo não precisa confirmar*/){
-                filterChain.doFilter(request, response);
+                filterChain.doFilter(request, response);//permite que requisição siga seu flixo de processamento
             }else{
                 response.sendError(401, "User sem autorização");
             }
